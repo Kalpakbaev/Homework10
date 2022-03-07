@@ -1,10 +1,11 @@
-package com.gb.myapplication_lesson10;
+package com.gb.myapplication_lesson10.ui;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.gb.myapplication_lesson10.R;
+import com.gb.myapplication_lesson10.repository.LocalRepositoryImpl;
 
 public class AnimalGuideFragment extends Fragment implements OnItemClickListener {
 
@@ -37,7 +41,8 @@ public class AnimalGuideFragment extends Fragment implements OnItemClickListener
     }
     void initAdapter(){
         animalGuideAdapter = new AnimalGuideAdapter();
-        animalGuideAdapter.setData(getData());
+        LocalRepositoryImpl localRepository = new LocalRepositoryImpl(requireContext().getResources());
+        animalGuideAdapter.setData( localRepository.init());
         animalGuideAdapter.setOnItemClickListener(this);
     }
         void initRecycle(View view){
@@ -46,6 +51,10 @@ public class AnimalGuideFragment extends Fragment implements OnItemClickListener
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
             recyclerView.setAdapter(animalGuideAdapter);
+
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),LinearLayoutManager.VERTICAL);
+            dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.separator));
+            recyclerView.addItemDecoration(dividerItemDecoration);
 
     }
 
