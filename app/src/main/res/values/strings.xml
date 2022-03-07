@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">animal guide</string>
+    <string name="title1">animals</string>
+    <string name="title2">birds</string>
+    <string name="title3">predatory animals</string>
+    <string name="title4">predatory birds</string>
+    <string name="title5">jaguar</string>
+    <string name="title6">puma</string>
+    <string name="title7">herbivores</string>
+    <string name="description1">animal classes</string>
+    <string name="description2">wintering birds</string>
+    <string name="description3">predator class</string>
+    <string name="description4"> birds of prey</string>
+    <string name="description5">dangerous predator</string>
+    <string name="description6">beautiful predator</string>
+    <string name="description7">species of herbivores</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
