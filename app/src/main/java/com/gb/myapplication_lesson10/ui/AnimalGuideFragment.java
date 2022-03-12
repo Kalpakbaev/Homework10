@@ -81,13 +81,17 @@ public class AnimalGuideFragment extends Fragment implements OnItemClickListener
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
+        int menuPosition = animalGuideAdapter.getMenuPosition();
         switch (item.getItemId()){
             case R.id.action_update:{
-
+                data.updateCardData(menuPosition,new CardData("UpdatedCard "+data.size(),"description UpdatedCard " +
+                        data.size(),data.getCardData(menuPosition).getPicture(),false));
+                animalGuideAdapter.notifyItemChanged(menuPosition);
                 break;
             }
             case R.id.action_delete:{
-
+                    data.deleteCardData(menuPosition);
+                    animalGuideAdapter.notifyItemRemoved(menuPosition);
                 break;
 
             }

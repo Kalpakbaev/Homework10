@@ -17,24 +17,32 @@ import com.gb.myapplication_lesson10.repository.CardsSource;
 
 public class AnimalGuideAdapter extends RecyclerView.Adapter<AnimalGuideAdapter.MyViewHolder> {
 
-      private CardsSource cardsSource;
+
+    private int menuPosition;
+
+    private CardsSource cardsSource;
 
     OnItemClickListener onItemClickListener;
 
     Fragment fragment;
 
+    public int getMenuPosition() {
+        return menuPosition;
+    }
 
     public void setData(CardsSource cardsSource) {
         this.cardsSource = cardsSource;
         notifyDataSetChanged();
     }
 
-    AnimalGuideAdapter(CardsSource cardsSource){
+    AnimalGuideAdapter(CardsSource cardsSource) {
         this.cardsSource = cardsSource;
     }
-    AnimalGuideAdapter(){
+
+    AnimalGuideAdapter() {
     }
-    AnimalGuideAdapter(Fragment fragment){
+
+    AnimalGuideAdapter(Fragment fragment) {
         this.fragment = fragment;
     }
 
@@ -42,31 +50,51 @@ public class AnimalGuideAdapter extends RecyclerView.Adapter<AnimalGuideAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        return new MyViewHolder(layoutInflater.inflate(R.layout.fragment_animal_guide_cardview_item,parent,false));
+        return new MyViewHolder(layoutInflater.inflate(R.layout.fragment_animal_guide_cardview_item, parent, false));
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.bindContentWithLayout(cardsSource.getCardData(position));
     }
+
     @Override
     public int getItemCount() {
         return cardsSource.size();
     }
-    class MyViewHolder extends RecyclerView.ViewHolder{
+
+    class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewTitle;
         private final TextView textViewDescription;
         private final ImageView imageViewPicture;
         private final ToggleButton toggleButton;
-        public MyViewHolder(@NonNull View itemView){
-          super(itemView);
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
             textViewTitle = (TextView) itemView.findViewById(R.id.title);
             textViewDescription = (TextView) itemView.findViewById(R.id.description);
             imageViewPicture = (ImageView) itemView.findViewById(R.id.imageView);
             toggleButton = (ToggleButton) itemView.findViewById(R.id.like);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    menuPosition = getLayoutPosition();
+                    return false;
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    menuPosition = getLayoutPosition();
+                     // view.showContextMenu(0,0);
+                    return false;
+                }
+            });
             fragment.registerForContextMenu(itemView);
             /*textView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -79,7 +107,8 @@ public class AnimalGuideAdapter extends RecyclerView.Adapter<AnimalGuideAdapter.
             });*/
 
         }
-        public void bindContentWithLayout(CardData content){
+
+        public void bindContentWithLayout(CardData content) {
             textViewTitle.setText(content.getTitle());
             textViewDescription.setText(content.getDescription());
             imageViewPicture.setImageResource(content.getPicture());
