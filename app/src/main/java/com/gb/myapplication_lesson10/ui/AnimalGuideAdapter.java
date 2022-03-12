@@ -8,28 +8,34 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gb.myapplication_lesson10.R;
 import com.gb.myapplication_lesson10.repository.CardData;
-import com.gb.myapplication_lesson10.repository.CardSource;
+import com.gb.myapplication_lesson10.repository.CardsSource;
 
 public class AnimalGuideAdapter extends RecyclerView.Adapter<AnimalGuideAdapter.MyViewHolder> {
 
-      private CardSource cardSource;
+      private CardsSource cardsSource;
 
     OnItemClickListener onItemClickListener;
 
+    Fragment fragment;
 
-    public void setData(CardSource cardSource) {
-        this.cardSource = cardSource;
+
+    public void setData(CardsSource cardsSource) {
+        this.cardsSource = cardsSource;
         notifyDataSetChanged();
     }
 
-    AnimalGuideAdapter(CardSource cardSource){
-        this.cardSource = cardSource;
+    AnimalGuideAdapter(CardsSource cardsSource){
+        this.cardsSource = cardsSource;
     }
     AnimalGuideAdapter(){
+    }
+    AnimalGuideAdapter(Fragment fragment){
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -44,23 +50,24 @@ public class AnimalGuideAdapter extends RecyclerView.Adapter<AnimalGuideAdapter.
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.bindContentWithLayout(cardSource.getCardData(position));
+        holder.bindContentWithLayout(cardsSource.getCardData(position));
     }
     @Override
     public int getItemCount() {
-        return cardSource.size();
+        return cardsSource.size();
     }
     class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView textViewTitle;
-        private TextView textViewDescription;
-        private ImageView imageViewPicture;
-        private ToggleButton toggleButton;
+        private final TextView textViewTitle;
+        private final TextView textViewDescription;
+        private final ImageView imageViewPicture;
+        private final ToggleButton toggleButton;
         public MyViewHolder(@NonNull View itemView){
           super(itemView);
             textViewTitle = (TextView) itemView.findViewById(R.id.title);
             textViewDescription = (TextView) itemView.findViewById(R.id.description);
             imageViewPicture = (ImageView) itemView.findViewById(R.id.imageView);
             toggleButton = (ToggleButton) itemView.findViewById(R.id.like);
+            fragment.registerForContextMenu(itemView);
             /*textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
