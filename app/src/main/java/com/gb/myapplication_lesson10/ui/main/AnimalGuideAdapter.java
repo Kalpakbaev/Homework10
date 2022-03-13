@@ -1,4 +1,4 @@
-package com.gb.myapplication_lesson10.ui;
+package com.gb.myapplication_lesson10.ui.main;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gb.myapplication_lesson10.R;
 import com.gb.myapplication_lesson10.repository.CardData;
 import com.gb.myapplication_lesson10.repository.CardsSource;
+
+import java.text.MessageFormat;
 
 public class AnimalGuideAdapter extends RecyclerView.Adapter<AnimalGuideAdapter.MyViewHolder> {
 
@@ -110,7 +112,7 @@ public class AnimalGuideAdapter extends RecyclerView.Adapter<AnimalGuideAdapter.
 
         public void bindContentWithLayout(CardData content) {
             textViewTitle.setText(content.getTitle());
-            textViewDescription.setText(content.getDescription());
+            textViewDescription.setText(MessageFormat.format("{0} {1}", content.getDescription(), content.getDate()));
             imageViewPicture.setImageResource(content.getPicture());
             toggleButton.setChecked(content.isLike());
 

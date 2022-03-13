@@ -19,5 +19,8 @@
     <string name="add">add</string>
     <string name="update">Изменить</string>
     <string name="delete">удалить</string>
+    <string name="save">save</string>
+    <string name="test1">test1</string>
+    <string name="test2">test2</string>
 
 </resources>

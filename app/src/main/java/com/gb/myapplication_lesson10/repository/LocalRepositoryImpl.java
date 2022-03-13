@@ -7,6 +7,7 @@ import android.provider.ContactsContract;
 import com.gb.myapplication_lesson10.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class LocalRepositoryImpl implements CardsSource {
@@ -24,7 +25,8 @@ public class LocalRepositoryImpl implements CardsSource {
         String[] description = resources.getStringArray(R.array.descriptions);
         TypedArray pictures = resources.obtainTypedArray(R.array.pictures);
         for (int i = 0; i < titles.length; i++) {
-            dataSource.add(new CardData(titles[i], description[i], pictures.getResourceId(i, 0), false));
+            dataSource.add(new CardData(titles[i], description[i], pictures.getResourceId(i, 0), false,
+                    Calendar.getInstance().getTime()));
         }
         return this;
     }
