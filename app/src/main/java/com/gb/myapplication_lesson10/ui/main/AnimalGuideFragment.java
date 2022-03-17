@@ -24,7 +24,6 @@ import com.gb.myapplication_lesson10.publisher.Observer;
 import com.gb.myapplication_lesson10.repository.CardData;
 import com.gb.myapplication_lesson10.repository.CardsSource;
 import com.gb.myapplication_lesson10.repository.LocalRepositoryImpl;
-import com.gb.myapplication_lesson10.ui.MainActivity;
 import com.gb.myapplication_lesson10.ui.editor.CardFragment;
 
 import java.util.Calendar;

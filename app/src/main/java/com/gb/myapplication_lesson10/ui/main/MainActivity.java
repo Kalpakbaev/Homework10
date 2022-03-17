@@ -1,4 +1,4 @@
-package com.gb.myapplication_lesson10.ui;
+package com.gb.myapplication_lesson10.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
