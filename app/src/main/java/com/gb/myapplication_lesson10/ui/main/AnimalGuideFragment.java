@@ -26,6 +26,7 @@ import com.gb.myapplication_lesson10.publisher.Observer;
 import com.gb.myapplication_lesson10.repository.CardData;
 import com.gb.myapplication_lesson10.repository.CardsSource;
 import com.gb.myapplication_lesson10.repository.LocalRepositoryImpl;
+import com.gb.myapplication_lesson10.repository.LocalSharedPreferencesRepositoryImpl;
 import com.gb.myapplication_lesson10.ui.editor.CardFragment;
 
 import java.util.Calendar;
@@ -51,10 +52,28 @@ public class AnimalGuideFragment extends Fragment implements OnItemClickListener
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initAdapter();
+        setupSource();
         initRecycle(view);
         setHasOptionsMenu(true);
         initRadioGroup(view);
+
+    }
+
+    void setupSource() {
+        switch (getCurrentSource()) {
+            case SOURCE_ARRAY:
+                data = new LocalRepositoryImpl(requireContext().getResources()).init();
+                initAdapter();
+                break;
+            case SOURCE_SP:
+                data = new LocalSharedPreferencesRepositoryImpl(requireContext().getSharedPreferences(LocalSharedPreferencesRepositoryImpl.KEY_SP_2, Context.MODE_PRIVATE)).init();
+                initAdapter();
+                break;
+            case SOURCE_GF:
+                //data = new LocalFireStoreRepositoryImpl(requireContext().getResources()).init();
+                initAdapter();
+                break;
+        }
 
     }
 
@@ -95,8 +114,8 @@ public class AnimalGuideFragment extends Fragment implements OnItemClickListener
                 case R.id.sourceGF:
                     setCurrentSource(SOURCE_GF);
                     break;
-
             }
+            setupSource();
         }
     };
 
@@ -175,20 +194,9 @@ public class AnimalGuideFragment extends Fragment implements OnItemClickListener
     }
 
     void initAdapter() {
+        if(animalGuideAdapter==null)
         animalGuideAdapter = new AnimalGuideAdapter(this);
-        switch (getCurrentSource()) {
-            case SOURCE_ARRAY:
-                data = new LocalRepositoryImpl(requireContext().getResources()).init();
-                break;
-            case SOURCE_SP:
-                //data = new LocalSharedPreferencesRepositoryImpl(requireContext().getResources()).init();
-                break;
-            case SOURCE_GF:
-                //data = new LocalFireStoreRepositoryImpl(requireContext().getResources()).init();
-                break;
-        }
 
-        data = new LocalRepositoryImpl(requireContext().getResources()).init();
         animalGuideAdapter.setData(data);
         animalGuideAdapter.setOnItemClickListener(this);
     }

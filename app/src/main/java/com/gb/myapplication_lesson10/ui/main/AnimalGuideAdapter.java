@@ -22,7 +22,7 @@ public class AnimalGuideAdapter extends RecyclerView.Adapter<AnimalGuideAdapter.
 
     private int menuPosition;
 
-    private CardsSource cardsSource;
+   public CardsSource cardsSource;
 
     OnItemClickListener onItemClickListener;
 
