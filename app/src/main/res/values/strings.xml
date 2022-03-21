@@ -22,5 +22,8 @@
     <string name="save">save</string>
     <string name="test1">test1</string>
     <string name="test2">test2</string>
+    <string name="gf">Из GF</string>
+    <string name="sp">Из Sp</string>
+    <string name="array">Из Array</string>
 
 </resources>

@@ -1,13 +1,11 @@
 package com.gb.myapplication_lesson10.ui.main;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.gb.myapplication_lesson10.R;
 import com.gb.myapplication_lesson10.publisher.Publisher;
-import com.gb.myapplication_lesson10.ui.main.AnimalGuideFragment;
-import com.gb.myapplication_lesson10.ui.main.Navigation;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -6,10 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.AnimalGuideFragment">
 
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/sourceArrays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/array" />
+
+        <RadioButton
+            android:id="@+id/sourceSp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sp" />
+
+        <RadioButton
+            android:id="@+id/sourceGF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gf" />
+
+
+    </RadioGroup>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="?actionBarSize"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </FrameLayout>
